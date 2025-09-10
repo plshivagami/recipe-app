@@ -46,6 +46,7 @@ export default function RecipeBook() {
   const [image, setImage] = useState("");
   const [selected, setSelected] = useState(null);
   const [editIndex, setEditIndex] = useState(null);
+  const [search, setSearch] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -84,6 +85,11 @@ export default function RecipeBook() {
     setSelected(null);
   };
 
+  const filteredRecipes = recipes.filter((r) =>
+    r.name.toLowerCase().includes(search.toLowerCase()) ||
+    r.ingredients.toLowerCase().includes(search.toLowerCase())
+  );
+
   if (selected !== null) {
     return (
       <RecipeDetail
@@ -98,6 +104,13 @@ export default function RecipeBook() {
   return (
     <div className="container">
       <h1>Recipe Book</h1>
+      <input
+        type="text"
+        placeholder="Search recipes..."
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        style={{marginBottom: 20, padding: 8, width: '100%', borderRadius: 4, border: '1px solid #ccc'}}
+      />
       <form id="recipe-form" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -147,11 +160,11 @@ export default function RecipeBook() {
         )}
       </form>
       <div id="recipes-list">
-        {recipes.map((r, i) => (
+        {filteredRecipes.map((r, i) => (
           <div
             className="recipe-item"
             key={i}
-            onClick={() => setSelected(i)}
+            onClick={() => setSelected(recipes.indexOf(r))}
             style={{ cursor: "pointer" }}
           >
             {r.image && (
