@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe UI</title>
+    <link rel="stylesheet" href="Recipe.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Recipe Book</h1>
+      <form id="recipe-form">
+        <input
+          type="text"
+          id="recipe-name"
+          placeholder="Recipe Name"
+          required
+        />
+        <textarea
+          id="recipe-ingredients"
+          placeholder="Ingredients"
+          required
+        ></textarea>
+        <textarea id="recipe-steps" placeholder="Steps" required></textarea>
+        <button type="submit">Add Recipe</button>
+      </form>
+      <div id="recipes-list"></div>
+    </div>
+    <script src="Recipe.js"></script>
+  </body>
+</html>
